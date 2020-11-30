@@ -1,0 +1,26 @@
+cmake_minimum_required (VERSION 2.8.9)
+project (TrueFalse)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -fPIC")  
+find_package(OpenCV)
+
+if(OpenCV_FOUND)
+    include_directories(.)
+    include_directories(${OpenCV_INCLUDE_DIRS})    
+    add_library(truefalse SHARED truefalse.cpp)
+    add_executable(runner test.cpp )
+
+    IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+        target_link_libraries(truefalse ${OpenCV_LIBRARIES})
+        target_link_libraries(runner truefalse)
+        MESSAGE(STATUS "current platform: Linux ")
+    ELSEIF (CMAKE_SYSTEM_NAME MATCHES "Android")
+        target_link_libraries(truefalse ${OpenCV_LIBRARIES} log)
+        target_link_libraries(runner truefalse)
+        MESSAGE(STATUS "current platform: Android ${ANDROID_ABI}")
+    ELSE ()
+        MESSAGE(STATUS "other platform: ${CMAKE_SYSTEM_NAME}")
+    ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+endif()
+
+
