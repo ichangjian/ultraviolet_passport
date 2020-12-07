@@ -8,7 +8,7 @@ using namespace std;
 using namespace cv;
 int tf_num = 0;
 
-bool trueFalse(const char *image_data, int image_width, int image_height, int thresh)
+bool trueFalse(const unsigned char *image_data, int image_width, int image_height, int thresh)
 {
     LOGI("TrueFalse version 0.1");
     try

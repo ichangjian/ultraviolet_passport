@@ -9,5 +9,5 @@ int main(int argc, char **argv)
 {
     string file(argv[1]);
     Mat image = imread(file);
-    std::cout << trueFalse((const char *)image.data, image.cols, image.rows, 15);
+    std::cout << trueFalse(image.data, image.cols, image.rows, 15);
 }
