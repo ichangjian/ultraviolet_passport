@@ -8,11 +8,11 @@ extern "C"
 #endif
   /*
 参数：
-rgb_data: char 类型的二维数组
+bitmap: Jave Bitmap 类型
 返回值：
 识别成功返回1，失败返回0
 */
-  JNIEXPORT jint JNICALL Java_com_truefalse_sdk_upTrueFalse(JNIEnv *, jobject, jobjectArray rgb_data, jint thresh);
+  JNIEXPORT jint JNICALL Java_com_truefalse_sdk_upTrueFalse(JNIEnv *, jobject, jobject bitmap, jint thresh);
 
 #ifdef __cplusplus
 }
