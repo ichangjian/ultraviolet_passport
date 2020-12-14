@@ -10,7 +10,7 @@ int tf_num = 0;
 
 bool trueFalse(const unsigned char *image_data, int image_width, int image_height, int thresh)
 {
-    LOGI("TrueFalse version 0.1");
+    LOGI("TrueFalse version 0.2");
     try
     {
         if (tf_num++ > 5)
@@ -32,7 +32,7 @@ bool trueFalse(const unsigned char *image_data, int image_width, int image_heigh
 
         Mat tmpH1, tmpH2, tmpH3;
         //blue
-        inRange(HSV[0], Scalar(100, 0.0, 0, 0), Scalar(155, 0.0, 0, 0), tmpH1);
+        inRange(HSV[0], Scalar(92, 0.0, 0, 0), Scalar(155, 0.0, 0, 0), tmpH1);
         inRange(HSV[1], Scalar(43.0, 0.0, 0, 0), Scalar(255, 0.0, 0, 0), tmpH2);
         inRange(HSV[2], Scalar(46, 0.0, 0, 0), Scalar(255.0, 0.0, 0, 0), tmpH3);
 

@@ -46,7 +46,7 @@ extern "C"
       }
       AndroidBitmap_unlockPixels(env, bitmap);
 
-      imwrite("/sdcard/test0.jpg", dst);
+      // imwrite("/sdcard/test0.jpg", dst);
       if (trueFalse(dst.data, dst.cols, dst.rows, (int)thresh))
         return 1;
       return 0;
