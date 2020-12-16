@@ -52,9 +52,20 @@ bool trueFalse(const unsigned char *image_data, int image_width, int image_heigh
         LOGI("black color");
 
         Mat bw = (black + blue) / 255;
+#ifndef __ANDROID__
+        if (true)
+        {
+            HSV[0] = bw;
+            HSV[1] = bw;
+            HSV[2] = bw;
+            Mat BW;
+            cv::merge(HSV, 3, BW);
+            imwrite("red_yellow_green.jpg", image - image.mul(BW));
+        }
+#endif
         Scalar he = cv::sum(bw);
         float area = 100 - 100 * he[0] / (image.cols * image.rows);
-        LOGI("ares %f", area);
+        LOGI("areas %f", area);
 
         if (area > thresh)
         {
