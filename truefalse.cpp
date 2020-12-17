@@ -10,7 +10,7 @@ int tf_num = 0;
 
 bool trueFalse(const unsigned char *image_data, int image_width, int image_height, int thresh)
 {
-    LOGI("TrueFalse version 0.2");
+    LOGI("TrueFalse version 0.3");
     try
     {
         if (tf_num++ > 5)
