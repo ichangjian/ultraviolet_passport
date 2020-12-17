@@ -6,18 +6,18 @@
 
 using namespace std;
 using namespace cv;
-int tf_num = 0;
+// int tf_num = 0;
 
 bool trueFalse(const unsigned char *image_data, int image_width, int image_height, int thresh)
 {
-    LOGI("TrueFalse version 0.3");
+    LOGI("TrueFalse version 0.4");
     try
     {
-        if (tf_num++ > 5)
-        {
-            LOGE("please restart");
-            return false;
-        }
+        // if (tf_num++ > 5)
+        // {
+        //     LOGE("please restart");
+        //     return false;
+        // }
 
         LOGI("inter");
         Mat image(image_height, image_width, CV_8UC3, (void *)image_data);
