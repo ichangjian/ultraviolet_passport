@@ -21,6 +21,11 @@ bool trueFalse(const unsigned char *image_data, int image_width, int image_heigh
 
         LOGI("inter");
         Mat image(image_height, image_width, CV_8UC3, (void *)image_data);
+        if (image.empty())
+        {
+            LOGE("image error");
+            return false;
+        }
         LOGI("cvt data");
 
         Mat hsv;
@@ -32,7 +37,7 @@ bool trueFalse(const unsigned char *image_data, int image_width, int image_heigh
 
         Mat tmpH1, tmpH2, tmpH3;
         //blue
-        inRange(HSV[0], Scalar(92, 0.0, 0, 0), Scalar(155, 0.0, 0, 0), tmpH1);
+        inRange(HSV[0], Scalar(85, 0.0, 0, 0), Scalar(155, 0.0, 0, 0), tmpH1);
         inRange(HSV[1], Scalar(43.0, 0.0, 0, 0), Scalar(255, 0.0, 0, 0), tmpH2);
         inRange(HSV[2], Scalar(46, 0.0, 0, 0), Scalar(255.0, 0.0, 0, 0), tmpH3);
 
@@ -51,7 +56,18 @@ bool trueFalse(const unsigned char *image_data, int image_width, int image_heigh
         Mat black = tmpH1.clone();
         LOGI("black color");
 
-        Mat bw = (black + blue) / 255;
+        //white
+        inRange(HSV[0], Scalar(0, 0.0, 0, 0), Scalar(180, 0.0, 0, 0), tmpH1);
+        inRange(HSV[1], Scalar(0.0, 0.0, 0, 0), Scalar(70, 0.0, 0, 0), tmpH2);
+        inRange(HSV[2], Scalar(88, 0.0, 0, 0), Scalar(255, 0.0, 0, 0), tmpH3);
+
+        bitwise_and(tmpH3, tmpH2, tmpH2);
+        bitwise_and(tmpH1, tmpH2, tmpH1);
+        Mat white = tmpH1.clone();
+        LOGI("white color");
+
+        Mat bw = black + blue + white;
+        bw /= 255;
 #ifndef __ANDROID__
         if (true)
         {
